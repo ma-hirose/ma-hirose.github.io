@@ -1,5 +1,3 @@
 # MasaharuHirose.github.io
 Personal Web Site
-https://hirosemasaharu.github.io/about/
-
-https://ma-hirose.github.io/ma-hirose/
+https://ma-hirose.github.io/WebGL2.html
