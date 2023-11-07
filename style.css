@@ -1,0 +1,57 @@
+body {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Josefin Sans', sans-serif;
+  margin-left: auto; /* 左右の余白を自動調整 */
+  margin-right: auto;
+  padding: 0 300px; /* 左右の余白を指定 */
+  
+  font-size: 1.3em; /* フォントサイズを1.2倍に設定 */
+
+
+}
+
+header {
+  margin-bottom: 0px;
+}
+
+nav ul {
+  list-style-type: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav ul li {
+  margin: 0 10px;
+  margin-left: -80px;
+}
+
+h3 {
+  margin-bottom: 10px; /* タイトルの下部のマージンを指定 */
+  margin-left: 0;
+  padding-left: 0;
+}
+
+p {
+  margin-top: 0px; /* 本文の上部のマージンを指定 */
+  margin-left: 0;
+  padding-left: 0;
+}
+
+ul {
+  
+  margin-top: 0px; /* 本文の上部のマージンを指定 */
+  text-align: left; /* 本文を左寄せ */
+  list-style-type: disc; /* ドット（円形）を表示 */
+}
+
+ol {
+  
+  margin-top: 0px; /* 本文の上部のマージンを指定 */
+  text-align: left; /* 本文を左寄せ */
+  list-style-type: decimal; /* 数字を表示 */
+}
