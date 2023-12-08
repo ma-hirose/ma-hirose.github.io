@@ -11,6 +11,7 @@ for (let i = 0; i < numPointsX; i++) {
   }
 }
 
+
 const positions = new Float32Array(points);
 
 const scene = new THREE.Scene();
@@ -27,34 +28,35 @@ const geometry = new THREE.BufferGeometry();
 geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
 // 水色のマテリアル
-const material = new THREE.PointsMaterial({ color: 0x00bfff, opacity: 0.4, transparent: true });
+const material = new THREE.PointsMaterial({ color: 0x00bfff, opacity: 0.4, transparent: true , size: 0.05});
 
 const pointsObject = new THREE.Points(geometry, material);
 scene.add(pointsObject);
 
 camera.position.z = 5;
 
-// const ambientLight = new THREE.AmbientLight(0x404040); // 光の色を調整
-// scene.add(ambientLight);
-
-// material.emissive = new THREE.Color(0xffffff); // 発光色を白に設定
-// material.emissiveIntensity = 0.5; // 発光強度を調整
-
-
-// renderer.physicallyCorrectLights = true;
-// renderer.outputEncoding = THREE.sRGBEncoding;
-// renderer.toneMapping = THREE.ACESFilmicToneMapping;
+const xOffset = 0.1; // x方向のオフセット
+const yOffset = 0.1; // y方向のオフセット
 
 const animate = function () {
   requestAnimationFrame(animate);
-  
-  // 時間に対して正弦関数を使用して非線形な緩急を加える
+
+  // 時間に対して波を生成
   const time = performance.now() * 0.001; // ミリ秒から秒へ変換
-  const speed = 0.13; // 回転速度の増加量
-  pointsObject.rotation.x = Math.sin(time * speed) * Math.cos(time*speed*5) * 3 * Math.PI;
-  pointsObject.rotation.y = Math.cos(time * speed*2) * Math.sin(time*speed*3) * 3 * Math.PI;
-  // pointsObject.rotation.x = Math.sin(time * speed) * 3 * Math.PI;
-  // pointsObject.rotation.y = Math.cos(time * speed) * 3 * Math.PI;
+  const speed = 1.3; // 波の速度
+  const amplitude = 0.005; // 波の振幅
+
+  // 各点の位置を時間に応じて変更
+  for (let i = 0; i < numPointsX; i++) {
+    for (let j = 0; j < numPointsY; j++) {
+      const index = (i * numPointsY + j) * 3;
+      pointsObject.geometry.attributes.position.array[index] = positions[index] + Math.sin(time * speed) * amplitude;
+      pointsObject.geometry.attributes.position.array[index + 1] = positions[index + 1] + Math.sin(time * speed) * amplitude;
+    }
+  }
+
+  pointsObject.geometry.attributes.position.needsUpdate = true; // 位置を更新
+
   renderer.render(scene, camera);
 };
 
