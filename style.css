@@ -5,15 +5,35 @@ body {
   /* align-items: center;
   justify-content: center; */
   min-height: 100vh;
-  margin: 0;
+  margin: 100;
   font-family: 'Josefin Sans', sans-serif;
-  margin-left: auto; /* 左右の余白を自動調整 */
-  margin-right: auto;
-  padding: 0 300px; /* 左右の余白を指定 */
-  
-  font-size: 1.0em; /* フォントサイズを1.2倍に設定 */
+  /* margin-left: auto;
+  margin-right: auto; */
+  padding: 60px 300px;
+  font-size: 1.0em;
 
 }
+@media only screen and (max-width: 1200px) {
+  body {  
+    padding: 40px 200px;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  body {  
+    padding: 20px 100px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  body {  
+    padding: 10px 50px;
+  }
+}
+
+/* @media only screen and (min-width: 1201px) {
+  body {  
+    padding: 60px 300px;
+  }
+} */
 
 header {
   margin-bottom: 0px;
