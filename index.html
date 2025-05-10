@@ -1,51 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-    body {
-        /* 通常のスタイル */
-        /* ここに他のスタイルを追加 */
-
-        /* index.htmlにアクセスされた場合の条件付きスタイル */
-        align-items: center;
-        justify-content: center;
-    }
-  </style>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
-  
-  <title>My Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masaharu Hirose Website</title>
+    <style>
+        body {
+            font-family: 'Futura', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* font-family: 'Josefin Sans', sans-serif; */
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f8f8f8; /* Very light gray */
+            color: #333; /* Dark gray */
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        .profile-pic {
+            width: 150px;
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 30px;
+        }
+        .profile {
+            max-width: 600px;
+        }
+        h1 {
+            margin: 0 0 10px;
+            color: #333; /* Dark gray */
+        }
+        p {
+            margin: 0;
+        }
+        section {
+            margin-bottom: 60px;
+        }
+        h2 {
+            color: #333; /* Dark gray */
+            margin-bottom: 20px;
+        }
+        .links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .links li {
+            margin-bottom: 10px;
+        }
+        .links a {
+            text-decoration: none;
+            color: #0077cc; /* Blue links */
+            transition: color 0.3s;
+        }
+        .links a:hover {
+            color: #005fa3;
+        }
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .profile-pic {
+                width: 100px;
+                margin-bottom: 20px;
+            }
+            .profile {
+                max-width: 100%;
+            }
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <style>
-    body {
-        font-size: 1.3em;; /* 通常のフォントサイズ */
-    }
-  </style>
 
+    <div class="container">
+        <header class="header">
+            <img src="hirose.jpeg" alt="Your Photo" class="profile-pic">
+            <div class="profile">
+                <h1>Masaharu Hirose</h1>
+                <p>Masaharu Hirose is a researcher in Toyota Motor Corporation and an associated researcher in the University of Tokyo. 
+                    He received his Ph.D. in Engineering from the University of Tokyo in 2024. His research interests include human-computer interaction, 
+                    haptic interface, and verification of empirical sensor systems. He is also engaged in knowledge discovery as a data scientist, 
+                    focusing on transportation and manufacturing data.
+                   <a href="https://github.com/ma-hirose">github</a> 
+                   <a href="https://note.com/masaharu_hirose">note</a>   
+                   <a href="https://x.com/MasaharuHirose">Twitter</a> 
+                   <a href="https://www.youtube.com/channel/UC8sBNetKDYG2w-QWiZu7b0Q">YouTube</a> 
+                </p>
+            </div>
+        </header>
 
-  <header>
-    <img src="hirose.jpeg" alt="hirose", style="width: 200px; height: auto;">
-  </header>
-  
-  <nav>
-    <ul>
-      <li><a href="about.html">Masaharu Hirose</a></li>
-      <!-- <li><a href="projects.html">Projects</a></li>
-      <li><a href="publications.html">Publications</a></li> -->
-      <li><a href="https://scholar.google.co.jp/citations?hl=ja&user=XlydKMQAAAAJ&view_op=list_works&gmla=AMpAcmSDBSq3JnCuidjFI80JJzkNT5ZNcg3gIukqydlTdtulXK8_0Uqi-qdJYKsamUsw3lQCOWoBkWWhZlB-NK4_Y9yAWJNnSD_qCf4yimgS0CAuo2_wzm4">Google Scholar</a></li>
-      <li><a href="hobby.html">Hobby</a></li>
-      <li><a href="https://note.com/masaharu_hirose">Blog</a></li>
-    </ul>
-  </nav>
+        <section>
+            <h2>Industry Experience</h2>
+            <ul>
+                <li>Apr. 2019 - Present: Researcher, Toyota Motor Corporation</li>
+                <li>Oct. 2017 - Mar. 2019: Researcher, Toyota InfoTechnology Center</li>
+                <li>Apr. 2015 - Sep. 2017: Field Application Engineer, Intel Japan</li>
+            </ul>
+        </section>
 
-</body> 
+        <section>
+            <h2>Education</h2>
+            <ul>
+                <li>Sep. 2024: Ph.D. in Computer Science - University of Tokyo (Supervisor: Prof. Masahiko Inami and Prof. Yasuaki Monnai)</li>
+                <li>Mar. 2015: MS in Media Design - Keio University (Supervisor: Prof. Masahiko Inami and Prof. Kota Minamizawa)</li>
+                <li>Mar. 2013: BE in Engineering - Ritsumeikan University (Supervisor: Prof. Hideyuki Takakura, Prof. Takashi Minemoto)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Selected Publications</h2>
+            <ul>
+                <li>Masaharu Hirose and Masahiko Inami. 2023. Material Texture Design: Texture Representation System Utilizing Pseudo-Attraction Force Sensation. 
+                    In <i>ACM SIGGRAPH 2023 Emerging Technologies (SIGGRAPH '23)</i>. Association for Computing Machinery, New York, NY, USA, Article 11, 1–2. 
+                    <a href="https://doi.org/10.1145/3588037.3595397" target="_blank">https://doi.org/10.1145/3588037.3595397</a>
+                </li>
+                <li>Masaharu Hirose and Masahiko Inami. 2021. Balanced Glass Design: A flavor perception changing system by controlling the center-of-gravity. 
+                    In <i>ACM SIGGRAPH 2021 Emerging Technologies (SIGGRAPH '21)</i>. Association for Computing Machinery, New York, NY, USA, Article 3, 1–4. 
+                    <a href="https://doi.org/10.1145/3450550.3465344" target="_blank">https://doi.org/10.1145/3450550.3465344</a>
+                </li>
+                <li>Masaharu Hirose, Karin Iwazaki, Kozue Nojiri, Minato Takeda, Yuta Sugiura, and Masahiko Inami. 2015. Gravitamine spice: a system that changes the perception of eating through virtual weight sensation. 
+                    In <i>Proceedings of the 6th Augmented Human International Conference (AH '15)</i>. Association for Computing Machinery, New York, NY, USA, 33–40. 
+                    <a href="https://doi.org/10.1145/2735711.2735795" target="_blank">https://doi.org/10.1145/2735711.2735795</a>
+                </li>
+            </ul>
+            <!-- See <a href="https://scholar.google.co.jp/citations?user=XlydKMQAAAAJ" target="_blank">Google Scholar</a> for more -->
+        </section>
+
+        <section>
+            <h2>Code</h2>
+            <ul class="links">
+                <li><a href="https://github.com/ma-hirose" target="_blank">GitHub Repository sample 1</a></li>
+                <li><a href="https://github.com/ma-hirose" target="_blank">GitHub Repository sample 2</a></li>
+            </ul>
+        </section>
+    </div>
+
+</body>
 </html>
