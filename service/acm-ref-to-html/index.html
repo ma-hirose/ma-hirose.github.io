@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ACM Reference to HTML Converter</title>
+<style>
+  body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: auto; background-color: #f4f4f9; }
+  .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  textarea { width: 100%; box-sizing: border-box; height: 100px; margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace; }
+  .controls { display: flex; gap: 20px; margin-bottom: 15px; align-items: center; background: #f0f7ff; padding: 10px 15px; border-radius: 4px; border: 1px solid #cce5ff; }
+  button { padding: 10px 20px; cursor: pointer; background-color: #0056b3; color: white; border: none; border-radius: 4px; font-size: 16px; margin-bottom: 10px;}
+  button:hover { background-color: #004494; }
+  .preview { border: 1px solid #e0e0e0; padding: 15px; background: #fafafa; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>ACM Reference Converter</h2>
+  
+  <label for="inputText"><strong>1. Paste ACM Reference text here:</strong></label>
+  <textarea id="inputText" placeholder="e.g., Masaharu Hirose and Masahiko Inami. 2026. Haptic Representation Method for Material Properties utilizing Pseudo-weight Shifting. In Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems (CHI '26). Association for Computing Machinery, New York, NY, USA, Article 743, 1–21. https://doi.org/10.1145/3772318.3790940"></textarea>
+
+  <div class="controls">
+    <label>
+      <input type="checkbox" id="wrapLi" checked> Wrap in <strong>&lt;li&gt;</strong> tags
+    </label>
+    <label>
+      Base Indent (Tabs): <input type="number" id="baseIndent" value="4" min="0" max="10" style="width: 50px;">
+    </label>
+  </div>
+
+  <button onclick="convertText()">Convert to HTML</button>
+
+  <h3 style="margin-top: 15px;">2. Output (HTML)</h3>
+  <textarea id="outputText" readonly style="height: 180px;"></textarea>
+
+  <h3>3. Preview</h3>
+  <div class="preview" id="previewContainer">
+    <ul id="previewList" style="margin: 0; padding-left: 20px;"></ul>
+  </div>
+</div>
+
+<script>
+function convertText() {
+  const input = document.getElementById('inputText').value.trim();
+  const wrapLi = document.getElementById('wrapLi').checked;
+  const indentCount = parseInt(document.getElementById('baseIndent').value) || 0;
+  
+  // 指定された数だけTab文字を生成
+  const bI = '\t'.repeat(indentCount); // Base Indent
+  const iI = wrapLi ? '\t'.repeat(indentCount + 1) : bI; // Inner Indent (<li>がある場合は+1)
+  
+  const regex = /^(.*?)\.\s+(\d{4})\.\s+(.*?)[.?!]\s+(.*?)\.\s+(.*?)\.\s+(https?:\/\/\S+)\/?$/;
+  const match = input.match(regex);
+
+  let htmlOutput = "";
+  let previewHtml = "";
+
+  if (match) {
+    const authors = match[1];
+    const year = match[2];
+    const title = match[3];
+    const proceedings = match[4];
+    const publisher = match[5];
+    const url = match[6];
+
+    if (wrapLi) {
+      // <li>で囲む場合 (中身はさらに1段深くインデント)
+      htmlOutput = `${bI}<li>\n${iI}${authors}. ${year}. \n${iI}${title}. \n${iI}<cite>${proceedings}</cite>. \n${iI}${publisher}.\n${iI}<a href="${url}" target="_blank">${url}</a>\n${bI}</li>`;
+      previewHtml = `<li>${authors}. ${year}. ${title}. <cite>${proceedings}</cite>. ${publisher}. <a href="${url}" target="_blank">${url}</a></li>`;
+    } else {
+      // <li>で囲まない場合 (すべてベースインデントに合わせる)
+      htmlOutput = `${bI}${authors}. ${year}. \n${bI}${title}. \n${bI}<cite>${proceedings}</cite>. \n${bI}${publisher}.\n${bI}<a href="${url}" target="_blank">${url}</a>`;
+      previewHtml = `${authors}. ${year}. ${title}. <cite>${proceedings}</cite>. ${publisher}. <a href="${url}" target="_blank">${url}</a>`;
+    }
+  } else {
+    // 正規表現にマッチしなかった場合のフォールバック
+    if (wrapLi) {
+      htmlOutput = `${bI}<li>\n${iI}${input}\n${bI}</li>`;
+      previewHtml = `<li>${input}</li>`;
+    } else {
+      htmlOutput = `${bI}${input}`;
+      previewHtml = `${input}`;
+    }
+  }
+
+  document.getElementById('outputText').value = htmlOutput;
+  
+  // プレビュー表示の切り替え (<ul>を使うかどうかの調整)
+  const previewContainer = document.getElementById('previewContainer');
+  if (wrapLi) {
+      previewContainer.innerHTML = `<ul style="margin: 0; padding-left: 20px;">${previewHtml}</ul>`;
+  } else {
+      previewContainer.innerHTML = `<div style="margin: 0;">${previewHtml}</div>`;
+  }
+}
+</script>
+
+</body>
+</html>
